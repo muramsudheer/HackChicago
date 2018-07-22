@@ -17,13 +17,15 @@ class SecondViewController: UIViewController {
         
         super.viewDidLoad()
         
+        rLat = rLat / 69
+        rLong = rLong / 69
         var centerLocation = CLLocationCoordinate2DMake(CLLocationDegrees(Lat), CLLocationDegrees(Long))
-        var mapSpan=MKCoordinateSpanMake(0.01, 0.01)
+        var mapSpan=MKCoordinateSpanMake(rLat, rLong)
         var mapRegion=MKCoordinateRegionMake(centerLocation, mapSpan)
         self.theMap.setRegion(mapRegion, animated: true)
         // Do any additional setup after loading the view, typically from a nib.
         
-        let coords = [CLLocation(latitude: 43, longitude: -88), CLLocation(latitude: 0.02, longitude: 0.02)];
+        let coords = [CLLocation(latitude: 43, longitude: -88), CLLocation(latitude: 43.05, longitude: -88.05), CLLocation(latitude: 43.1, longitude: -88.1)];
         
         func addAnnotations(coords: [CLLocation]) {
             for coord in coords {

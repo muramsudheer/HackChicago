@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import CoreLocation
 
 public var Lat = 43
 public var Long = -88
@@ -36,6 +37,21 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func searchButton(_ sender: Any) {
+        let address = searchCity.text
+        let geoCoder = CLGeocoder()
+        geoCoder.geocodeAddressString(address!) { (placemarks, error) in
+            guard
+                let placemarks = placemarks,
+                let location = placemarks.first?.location
+                else {
+                    // handle no location found
+                    return
+                }
+            print(location)
+            // Use your location
+        }
+    }
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }

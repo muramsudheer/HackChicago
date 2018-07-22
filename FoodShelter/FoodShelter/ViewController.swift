@@ -10,8 +10,8 @@ import UIKit
 import Alamofire
 import CoreLocation
 
-public var Lat = 43
-public var Long = -88
+public var Lat = Double()
+public var Long = Double()
 
 public var rLat = Double()
 public var rLong = Double()
@@ -23,12 +23,12 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     @IBOutlet weak var milesText: UITextField!
     @IBOutlet weak var milesMenu: UIPickerView!
     
-    var list = ["10","20","50","100"]
-    
+    var list = ["1","5","10","20","50","100"]
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.milesMenu.isHidden = true
+
     
     }
 
@@ -38,20 +38,18 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     @IBAction func searchButton(_ sender: Any) {
-        let address = searchCity.text
-        let geoCoder = CLGeocoder()
-        geoCoder.geocodeAddressString(address!) { (placemarks, error) in
-            guard
-                let placemarks = placemarks,
-                let location = placemarks.first?.location
-                else {
-                    // handle no location found
-                    return
-                }
-            print(location)
-            // Use your location
+        let address = searchCity.text!
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(address) {
+            placemarks, error in
+            let placemark = placemarks?.first
+            Lat = (placemark?.location?.coordinate.latitude)!
+            Long = (placemark?.location?.coordinate.longitude)!
+            print(Lat)
+            print(Long)
         }
-    }
+        }
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }

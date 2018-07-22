@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
 class SecondViewController: UIViewController {
     
@@ -17,26 +18,31 @@ class SecondViewController: UIViewController {
         
         super.viewDidLoad()
         
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            
         rLat = rLat / 69
         rLong = rLong / 69
+        
+        
         var centerLocation = CLLocationCoordinate2DMake(CLLocationDegrees(Lat), CLLocationDegrees(Long))
         var mapSpan=MKCoordinateSpanMake(rLat, rLong)
         var mapRegion=MKCoordinateRegionMake(centerLocation, mapSpan)
         self.theMap.setRegion(mapRegion, animated: true)
         // Do any additional setup after loading the view, typically from a nib.
         
-        let coords = [CLLocation(latitude: 43, longitude: -88), CLLocation(latitude: 43.05, longitude: -88.05), CLLocation(latitude: 43.1, longitude: -88.1)];
+        let coords = [CLLocation(latitude: Lat, longitude: Long)];
         
         func addAnnotations(coords: [CLLocation]) {
             for coord in coords {
                 let CLLCoordType = CLLocationCoordinate2D(latitude: coord.coordinate.latitude, longitude: coord.coordinate.longitude);
                 let anno = MKPointAnnotation();
                 anno.coordinate = CLLCoordType;
-                theMap.addAnnotation(anno);
+                self.theMap.addAnnotation(anno);
             }
         }
 
         addAnnotations(coords: coords)
+    }
     }
     
     override func didReceiveMemoryWarning() {
@@ -44,4 +50,5 @@ class SecondViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
 }

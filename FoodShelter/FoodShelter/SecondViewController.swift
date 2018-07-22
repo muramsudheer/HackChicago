@@ -10,6 +10,8 @@ import UIKit
 import MapKit
 import CoreLocation
 
+
+
 class SecondViewController: UIViewController {
     
     @IBOutlet weak var theMap: MKMapView!
@@ -17,6 +19,8 @@ class SecondViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        theMap.delegate = self
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             
@@ -40,10 +44,10 @@ class SecondViewController: UIViewController {
                 self.theMap.addAnnotation(anno);
             }
         }
-
-        addAnnotations(coords: coords)
+        
+        self.searchFunction()
     }
-    }
+}
     
     override func didReceiveMemoryWarning() {
         
@@ -51,4 +55,58 @@ class SecondViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func searchFunction() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        let request = MKLocalSearchRequest()
+        request.naturalLanguageQuery = "food pantry"
+        request.region = self.theMap.region
+        let search = MKLocalSearch(request: request)
+        
+        search.start { (response, error) in
+            if error != nil {
+                print("Error")
+            } else {
+                for item in response!.mapItems {
+                    let CLLCoordType2 = CLLocationCoordinate2D(latitude: item.placemark.coordinate.latitude, longitude: item.placemark.coordinate.longitude);
+                    let annotation = MKPointAnnotation()
+                    annotation.coordinate = CLLCoordType2
+                    annotation.title = item.name
+                    annotation.subtitle = item.phoneNumber
+                    self.theMap.addAnnotation(annotation);
+                    
+                    }
+                }
+            }
+        }
+    }
+    
 }
+
+extension SecondViewController: MKMapViewDelegate {
+    func mapView(_ theMap: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard let annotation = annotation as? MKPointAnnotation else {return nil}
+        let identifier = "marker"
+        var view: MKMarkerAnnotationView; UIControl()
+        if let dequedView = theMap.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView {
+            dequedView.annotation = annotation
+            view = dequedView
+        }
+        else {
+            view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            view.canShowCallout = true
+            view.calloutOffset = CGPoint(x: -5, y: 5)
+            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+            
+        }
+        return view
+    }
+    
+    private func mapView(_ theMap: MKMapView, anotationView view: MKMarkerAnnotationView, calloutAcceessoryControlTapped control: UIControl) {
+        print("yes but no")
+        if control == view.rightCalloutAccessoryView {
+            print("you clciked it!")
+        }
+    }
+    
+}
+

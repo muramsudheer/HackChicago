@@ -14,6 +14,8 @@
 		FA447FA72103B859001A7116 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA447FA62103B859001A7116 /* Assets.xcassets */; };
 		FA447FAA2103B859001A7116 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA447FA82103B859001A7116 /* LaunchScreen.storyboard */; };
 		FA813391210402C000244CF9 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA813390210402C000244CF9 /* SecondViewController.swift */; };
+		FA8133D52104DD9F00244CF9 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8133D42104DD9F00244CF9 /* ThirdViewController.swift */; };
+		FA8133D72104F68400244CF9 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8133D62104F68400244CF9 /* PopUpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,8 @@
 		FA447FA92103B859001A7116 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FA447FAB2103B859001A7116 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA813390210402C000244CF9 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		FA8133D42104DD9F00244CF9 /* ThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
+		FA8133D62104F68400244CF9 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		FE76DF58EC09A6DEC2A1C319 /* Pods-FoodShelter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodShelter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FoodShelter/Pods-FoodShelter.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -83,6 +87,8 @@
 				FA447F9F2103B858001A7116 /* AppDelegate.swift */,
 				FA447FA12103B858001A7116 /* ViewController.swift */,
 				FA447FA32103B858001A7116 /* Main.storyboard */,
+				FA8133D62104F68400244CF9 /* PopUpViewController.swift */,
+				FA8133D42104DD9F00244CF9 /* ThirdViewController.swift */,
 				FA813390210402C000244CF9 /* SecondViewController.swift */,
 				FA447FA62103B859001A7116 /* Assets.xcassets */,
 				FA447FA82103B859001A7116 /* LaunchScreen.storyboard */,
@@ -203,8 +209,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA8133D72104F68400244CF9 /* PopUpViewController.swift in Sources */,
 				FA813391210402C000244CF9 /* SecondViewController.swift in Sources */,
 				FA447FA22103B858001A7116 /* ViewController.swift in Sources */,
+				FA8133D52104DD9F00244CF9 /* ThirdViewController.swift in Sources */,
 				FA447FA02103B858001A7116 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

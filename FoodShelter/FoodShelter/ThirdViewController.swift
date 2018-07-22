@@ -26,6 +26,10 @@ class ThirdViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {     // Keypad goes away when screen is touched
+        self.view.endEditing(true)
+    }
+    
     
     @IBAction func submit(_ sender: Any) {
         
